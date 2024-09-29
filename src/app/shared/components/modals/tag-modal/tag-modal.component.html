@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>{{ data ? 'Edit' : 'Add' }} Tag</h2>
+<div mat-dialog-content>
+  <form [formGroup]="tagForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Label</mat-label>
+      <input matInput formControlName="label">
+      <mat-error *ngIf="tagForm.controls['label'].hasError('required') && tagForm.controls['label'].touched">
+        Label is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Color (Hex Code)</mat-label>
+      <input matInput type="color" formControlName="color">
+      <mat-error *ngIf="tagForm.controls['color'].hasError('required') && tagForm.controls['color'].touched">
+        Color is required.
+      </mat-error>
+      <mat-error *ngIf="tagForm.controls['color'].hasError('pattern')">
+        Color must be a valid hex code.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Cancel</button>
+  <button mat-button [disabled]="tagForm.invalid" (click)="onSave()">Save</button>
+</div>

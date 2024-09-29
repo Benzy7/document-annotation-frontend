@@ -1,0 +1,41 @@
+<div class="document-container">
+  <button mat-raised-button color="primary" (click)="openAddModal()">Add Document</button>
+
+  <div class="labels-container">
+    <span *ngFor="let label of labels" class="label-item" [ngStyle]="{'background-color': label.color}">
+      {{ label.label }}
+    </span>
+  </div>
+
+
+  <ul class="document-list">
+    <li *ngFor="let document of documents, let i = index">
+      <h3>{{ document.title }}</h3>
+      <p class="spaced-paragraph" (mouseup)="onTextSelect(document.id!)">
+        <ng-container *ngFor="let fragment of getAnnotatedContent(document)">
+          <span *ngIf="fragment.color" class="annotated-text" [ngStyle]="{'background-color': fragment.color}">
+            {{ fragment.text }}
+            <span class="annotation-label" [ngStyle]="{'color': fragment.color}">
+              {{ fragment.label }}
+            </span>
+          </span>
+          <span *ngIf="!fragment.color">
+            {{ fragment.text }}
+          </span>
+        </ng-container>
+      </p>
+
+      <div class="icon-container">
+        <button mat-icon-button (click)="openEditModal(i)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onDelete(document.id!)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="exportAnnotations(document.id!)">
+          <mat-icon>file_download</mat-icon>
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>

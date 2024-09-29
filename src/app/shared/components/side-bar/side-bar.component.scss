@@ -1,0 +1,30 @@
+nav {
+  height: 97vh;
+  width: 200px;
+  background-color: #f0f0f0;
+  padding: 15px;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin: 10px 0;
+      cursor: pointer;
+
+      a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+
+        &.active {
+          color: blue;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

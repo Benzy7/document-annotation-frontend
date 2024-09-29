@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Select Annotation</h2>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" *ngIf="labels">
+    <mat-label>Label</mat-label>
+    <mat-select [(ngModel)]="selectedLabel">
+      <mat-option *ngFor="let label of labels" [value]="label"
+        [ngStyle]="{'background-color': label.color, 'color': 'white'}">
+        {{ label.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSelect()">Confirm</button>
+</div>
